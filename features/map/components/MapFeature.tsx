@@ -73,7 +73,8 @@ export default function MapFeature() {
   };
   return (
     <div className="w-full p-5">
-      <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center">
+      <div className="mb-5 flex flex-col gap-3 md:flex-row items-center">
+        {/* <div className="bg-red-700 w-full flex gap-2 justify-center items-center"> */}
         <Toolbar
           onShowHotels={handleShowHotels}
           onMyLocation={handleMyLocation}
@@ -81,6 +82,7 @@ export default function MapFeature() {
         {hotels.length > 0 && (
           <HotelFilter value={filter} onChange={setFilter} />
         )}
+        {/* </div> */}
 
         <SearchBox onSearch={handleSearch} loading={loading} />
       </div>

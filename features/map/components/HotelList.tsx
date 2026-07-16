@@ -7,6 +7,19 @@ type Props = {
 };
 
 export default function HotelList({ hotels, onView }: Props) {
+  if (!hotels.length) {
+    return (
+      <div className="flex h-64 items-center justify-center rounded-2xl border border-dashed">
+        <div className="text-center">
+          <p className="text-5xl">🏨</p>
+          <h3 className="mt-3 font-semibold">No Hotels</h3>
+          <p className="text-gray-500">
+            Click Hotels to display available hotels.
+          </p>
+        </div>
+      </div>
+    );
+  }
   return (
     <aside
       className="

@@ -10,10 +10,10 @@ import MapUpdater from "./MapUpdater";
 import { MapProps } from "../types/map-type";
 
 export default function MapView({ center, hotels }: MapProps) {
-  const companyLocation: [number, number] = [
-    COMPANY_LOCATION.lat,
-    COMPANY_LOCATION.lng,
-  ];
+  // const companyLocation: [number, number] = [
+  //   COMPANY_LOCATION.lat,
+  //   COMPANY_LOCATION.lng,
+  // ];
   return (
     <MapContainer
       center={center}
@@ -45,11 +45,15 @@ export default function MapView({ center, hotels }: MapProps) {
             <div className="space-y-2">
               <h3 className="font-bold">{hotel.name}</h3>
 
-              <p>{hotel.city}</p>
+              <p>📍 {hotel.city}</p>
 
-              <p>⭐⭐⭐⭐ {hotel.rating}</p>
+              <p>⭐ {hotel.rating}</p>
 
-              <p>${hotel.price}</p>
+              <p className="font-semibold text-[#027C8C]">${hotel.price}</p>
+
+              <button className="w-full rounded-lg bg-[#027C8C] py-2 text-white">
+                Book Now
+              </button>
             </div>
           </Popup>
         </Marker>
