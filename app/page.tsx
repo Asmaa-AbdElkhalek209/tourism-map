@@ -1,9 +1,11 @@
-import Map from "@/features/map/components/Map";
+import MapFeature from "@/features/map/components/MapFeature";
 
 export default function Home() {
   return (
-    <main className="p-5">
-      <Map />
-    </main>
+    <>
+      <div className="p-5">
+        <MapFeature />
+      </div>
+    </>
   );
 }
