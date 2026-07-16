@@ -8,7 +8,7 @@ The project demonstrates how to build an interactive map experience with hotel l
 
 ## 🚀 Live Demo
 
-🔗 **Live:** https://your-live-url.vercel.app
+🔗 **Live:** https://tourism-map-pwa.vercel.app/
 
 ---
 
