@@ -21,12 +21,28 @@ export default function MapFeature() {
   const [hotels, setHotels] = useState<Hotel[]>([]);
   const [filter, setFilter] = useState("All");
 
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
   const handleSearch = async (value: string) => {
-    const data = await searchLocation(value);
+    setLoading(true);
+    setError("");
 
-    if (!data.length) return;
+    try {
+      const data = await searchLocation(value);
 
-    setCenter([Number(data[0].lat), Number(data[0].lon)]);
+      if (!data.length) {
+        setError("Location not found.");
+        return;
+      }
+
+      setCenter([Number(data[0].lat), Number(data[0].lon)]);
+    } catch (err) {
+      console.error(err);
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleShowHotels = () => {
@@ -44,12 +60,19 @@ export default function MapFeature() {
     <div className="w-full p-5">
       <div className="mb-5 flex flex-col gap-4 md:flex-row md:items-center">
         <Toolbar onShowHotels={handleShowHotels} />
+
         {hotels.length > 0 && (
           <HotelFilter value={filter} onChange={setFilter} />
         )}
 
-        <SearchBox onSearch={handleSearch} />
+        <SearchBox onSearch={handleSearch} loading={loading} />
       </div>
+
+      {error && (
+        <div className="mb-4 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
+          {error}
+        </div>
+      )}
 
       <div className="mt-6 flex flex-col gap-5 lg:flex-row">
         {filteredHotels.length > 0 && (

@@ -2,9 +2,10 @@
 
 type SearchBoxProps = {
   onSearch: (value: string) => void;
+  loading: boolean;
 };
 
-export default function SearchBox({ onSearch }: SearchBoxProps) {
+export default function SearchBox({ onSearch, loading }: SearchBoxProps) {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -30,9 +31,21 @@ export default function SearchBox({ onSearch }: SearchBoxProps) {
 
       <button
         type="submit"
-        className="rounded-xl bg-[#027C8C] px-6 py-3 font-medium text-white transition-all duration-300 hover:bg-[#036673] hover:shadow-xl active:scale-95"
+        disabled={loading}
+        className="
+    rounded-xl
+    bg-[#027C8C]
+    px-6
+    py-3
+    font-medium
+    text-white
+    transition
+    hover:bg-[#036673]
+    disabled:cursor-not-allowed
+    disabled:opacity-60
+  "
       >
-        Search
+        {loading ? "Searching..." : "Search"}
       </button>
     </form>
   );
